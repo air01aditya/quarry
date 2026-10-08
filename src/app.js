@@ -1,6 +1,7 @@
 const express = require("express");
 const authRoutes = require("./modules/auth/auth.routes");
 const applicationRoutes = require("./modules/applications/applications.routes");
+const statsRoutes = require("./modules/stats/stats.routes");
 const errorHandler = require("./middleware/errorHandler");
 
 function createApp() {
@@ -14,6 +15,7 @@ function createApp() {
 
   app.use("/auth", authRoutes);
   app.use("/applications", applicationRoutes);
+  app.use("/stats", statsRoutes);
 
   app.use((req, res) => {
     res.status(404).json({ error: "not found" });
