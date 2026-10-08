@@ -1,4 +1,5 @@
 const express = require("express");
+const authRoutes = require("./modules/auth/auth.routes");
 const errorHandler = require("./middleware/errorHandler");
 
 function createApp() {
@@ -9,6 +10,8 @@ function createApp() {
   app.get("/health", (req, res) => {
     res.json({ status: "ok" });
   });
+
+  app.use("/auth", authRoutes);
 
   app.use((req, res) => {
     res.status(404).json({ error: "not found" });
