@@ -5,8 +5,10 @@ const { Pool, types } = require("pg");
 const DATE_OID = 1082;
 types.setTypeParser(DATE_OID, (value) => value);
 
-// Connection settings come from the PG* environment variables.
-const pool = new Pool();
+// Hosted databases (Neon) give one DATABASE_URL. Locally the PG* variables are used.
+const pool = new Pool(
+  process.env.DATABASE_URL ? { connectionString: process.env.DATABASE_URL } : undefined,
+);
 
 async function withTransaction(work) {
   const client = await pool.connect();
