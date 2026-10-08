@@ -1,11 +1,13 @@
-# Quarry
+# Safar
 
 A backend API for tracking my job applications: where I applied, what stage each one
 is at, and which sources actually lead to interviews.
 
 I was keeping this in a spreadsheet and kept losing track of which companies had
-replied, which had ghosted me, and which job boards were worth the time. Quarry keeps
+replied, which had ghosted me, and which job boards were worth the time. Safar keeps
 every application, every status change and my notes, and turns them into numbers.
+
+*Safar* means journey. A job hunt is one, and this keeps every step of it.
 
 > **Status:** runs locally. Not deployed yet.
 
@@ -183,8 +185,8 @@ Needs Node 22+ and PostgreSQL.
 ```bash
 npm install
 cp .env.example .env        # then fill in your Postgres password and a JWT secret
-createdb quarry
-createdb quarry_test
+createdb safar
+createdb safar_test
 npm run migrate
 npm run dev
 ```
@@ -200,7 +202,7 @@ npm test
 24 tests send real HTTP requests to the app and check the responses and the
 database. They cover auth, validation, filters, status history, notes, stats, and
 one user trying to read or change another user's data. They run against
-`quarry_test`, which is wiped at the start of each test file, so they never touch
+`safar_test`, which is wiped at the start of each test file, so they never touch
 real data.
 
 ## API

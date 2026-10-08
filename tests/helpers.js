@@ -1,5 +1,5 @@
 // Tests always run against a separate database, never the real one.
-process.env.PGDATABASE = process.env.PGDATABASE_TEST || "quarry_test";
+process.env.PGDATABASE = process.env.PGDATABASE_TEST || "safar_test";
 
 const request = require("supertest");
 const createApp = require("../src/app");
