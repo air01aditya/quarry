@@ -38,6 +38,14 @@ describe("auth", () => {
       .expect(401);
   });
 
+  it("blocks protected routes without a valid token", async () => {
+    await request(app).get("/applications").expect(401);
+    await request(app)
+      .get("/applications")
+      .set("Authorization", "Bearer not-a-real-token")
+      .expect(401);
+  });
+
   it("answers malformed JSON with 400", async () => {
     const res = await request(app)
       .post("/auth/login")
