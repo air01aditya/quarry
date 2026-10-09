@@ -9,7 +9,7 @@ every application, every status change and my notes, and turns them into numbers
 
 *Safar* means journey. A job hunt is one, and this keeps every step of it.
 
-> **Status:** runs locally. Not deployed yet.
+> **Live:** https://safar-dyq2.onrender.com (free tier, the first request after a while can take about a minute to wake up)
 
 ## What it does
 
