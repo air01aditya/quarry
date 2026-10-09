@@ -1,5 +1,5 @@
 {
-  "name": "quarry",
+  "name": "safar",
   "version": "1.0.0",
   "description": "A small API for tracking my job applications",
   "main": "src/server.js",
