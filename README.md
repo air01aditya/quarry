@@ -15,7 +15,7 @@ every application, every status change and my notes, and turns them into numbers
 
 - Save applications with company, role, link, source (LinkedIn, Naukri, referral...)
   and the date I applied.
-- Move them through `saved → applied → interview → offer / rejected / ghosted`.
+- Move them through `saved -> applied -> interview -> offer / rejected / ghosted`.
   Every change is recorded with a timestamp.
 - Add notes to an application ("HR call on Monday", "asked about indexes").
 - Filter by status, company and date range, with pagination.
@@ -68,16 +68,16 @@ sequenceDiagram
     participant DB as PostgreSQL
 
     C->>Auth: PATCH /applications/7/status + Bearer token
-    Auth->>Auth: verify JWT → req.userId
+    Auth->>Auth: verify JWT -> req.userId
     Auth->>R: next()
     R->>R: validate id and body (Zod)
     R->>S: changeStatus(userId, 7, "interview")
     S->>DB: BEGIN
     S->>DB: SELECT ... WHERE user_id = $1 AND id = 7 FOR UPDATE
     Note over S,DB: row is locked until COMMIT
-    S->>S: same status? → 409
+    S->>S: same status? -> 409
     S->>DB: UPDATE applications SET status = 'interview'
-    S->>DB: INSERT INTO status_events (applied → interview)
+    S->>DB: INSERT INTO status_events (applied -> interview)
     S->>DB: COMMIT
     S-->>R: updated application
     R-->>C: 200 + JSON
@@ -147,7 +147,7 @@ erDiagram
   row locked (`SELECT ... FOR UPDATE`). Either both are saved or neither is, and two
   requests can't change the same application at the same time.
 - **Stats use the history, not just the current status.** An application that went
-  `interview → rejected` still counts as an interview for its source.
+  `interview -> rejected` still counts as an interview for its source.
 - **Other users' data returns 404, not 403**, so the API doesn't confirm that an id
   exists.
 - **Passwords are hashed with bcrypt**, never stored. Login returns a JWT that
